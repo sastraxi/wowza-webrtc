@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  wowza:
+    image: wowzamedia/wowza-streaming-engine-linux:4.8.0
+    ports:
+      - "1935:1935"
+      - "8086:8086"
+      - "8087:8087"
+      - "8088:8088"            
+    restart: always
+    entrypoint: "/sbin/entrypoint.sh"
+    environment:
+      WSE_MGR_USER: "${WOWZA_USER}"
+      WSE_MGR_PASS: "${WOWZA_PASSWORD}"
+      WSE_LIC: "${WOWZA_LICENSE_KEY}"
+      WSE_IP_PARAM: "${WOWZA_HOST}"
